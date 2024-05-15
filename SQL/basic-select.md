@@ -235,6 +235,10 @@ When ordered alphabetically, the CITY names are listed as ABC, DEF, PQRS, and WX
 
 **Solution**
 ```sql
+SELECT * FROM (SELECT DISTINCT city, LENGTH(city) FROM station ORDER BY LENGTH(city) ASC, city ASC) WHERE ROWNUM = 1   
+UNION  
+SELECT * FROM (SELECT DISTINCT city, LENGTH(city) FROM station ORDER BY LENGTH(city) DESC, city ASC) WHERE ROWNUM = 1;
+OR 
 select city, length(city) from station order by length(city) DESC,city ASC fetch first row only;
 select city, length(city) from station order by length(city) asc ,city asc fetch first row only;      
 ```
